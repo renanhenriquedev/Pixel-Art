@@ -1,0 +1,14 @@
+# VSCode repo settings
+.vscode
+node_modules
+cypress/reports/
+cypress/screenshots/
+cypress.json
+package.json
+package-lock.json
+art-with-pixels.gif
+.stylelintrc.json
+.eslintrc.json
+.eslintignore
+.editorconfig
+cypress/
