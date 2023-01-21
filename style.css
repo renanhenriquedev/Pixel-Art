@@ -1,0 +1,22 @@
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.purple{
+    background-color: purple;
+}
+.yellow{
+    background-color: yellow;
+}
+div{
+    display: inline-block;
+}
+.quadrado{
+    position: static;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgb(0, 0, 0);
+}
