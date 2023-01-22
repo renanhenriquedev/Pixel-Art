@@ -55,11 +55,30 @@ function manterCor() {
   }
 }
 
+function pixelFrame(frame) {
+  for (let i = 0; i < 5; i += 1) {
+    let criarQuadrado = document.createElement('div');
+    criarQuadrado.classList.add('quadrado', 'pixel', 'white');
+    frame.appendChild(criarQuadrado);
+    criarQuadrado = undefined;
+  }
+}
+
+function createSection() {
+  for (let i = 0; i < 5; i += 1) {
+    const frame = document.createElement('section');
+    frame.id = 'pixel-board';
+    body.appendChild(frame);
+    pixelFrame(frame);
+  }
+}
+
 function init() {
   square();
   createButton();
   trocarCor();
   manterCor();
+  createSection();
 }
 
 window.onload = init;

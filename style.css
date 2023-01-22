@@ -10,6 +10,9 @@
 .yellow{
     background-color: yellow;
 }
+.white{
+    background-color: white;
+}
 div{
     display: inline-block;
 }
