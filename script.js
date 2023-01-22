@@ -73,12 +73,18 @@ function createSection() {
   }
 }
 
+function putClassSelected() {
+  const filhosSection = sectionPalette.childNodes;
+  filhosSection[0].classList.add('selected');
+}
+
 function init() {
   square();
   createButton();
   trocarCor();
   manterCor();
   createSection();
+  putClassSelected();
 }
 
 window.onload = init;
