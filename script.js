@@ -58,7 +58,7 @@ function manterCor() {
 function pixelFrame(frame) {
   for (let i = 0; i < 5; i += 1) {
     let criarQuadrado = document.createElement('div');
-    criarQuadrado.classList.add('quadrado', 'pixel', 'white');
+    criarQuadrado.classList.add('quadro', 'pixel', 'white');
     frame.appendChild(criarQuadrado);
     criarQuadrado = undefined;
   }
