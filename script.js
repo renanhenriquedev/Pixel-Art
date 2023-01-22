@@ -4,19 +4,18 @@ sectionPalette.id = 'color-palette';
 
 body.appendChild(sectionPalette);
 
-function square() {
-  const cores = ['#000000', '#0000ff ', '#a000c8', '#ffff00'];
-  for (let i = 0; i < 4; i += 1) {
-    const pegarSection = document.querySelector('section');
-    let criarQuadrado = document.createElement('div');
-    criarQuadrado.classList.add('quadrado', 'color');
-    criarQuadrado.style.backgroundColor = cores[i];
-    pegarSection.appendChild(criarQuadrado);
-    criarQuadrado = undefined;
-  }
-  if (localStorage.length === 0) {
-    localStorage.setItem('colorPalette', JSON.stringify(cores.slice(1, cores.length)));
-  }
+const cores = ['#000000', '#0000ff ', '#a000c8', '#ffff00'];
+for (let i = 0; i < 4; i += 1) {
+  const pegarSection = document.querySelector('section');
+  let criarQuadrado = document.createElement('div');
+  criarQuadrado.classList.add('quadrado', 'color');
+  criarQuadrado.id = [i];
+  criarQuadrado.style.backgroundColor = cores[i];
+  pegarSection.appendChild(criarQuadrado);
+  criarQuadrado = undefined;
+}
+if (localStorage.length === 0) {
+  localStorage.setItem('colorPalette', JSON.stringify(cores.slice(1, cores.length)));
 }
 
 function createButton() {
@@ -33,8 +32,8 @@ function corAleatoria() {
     const hex = `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`;
     array.push(hex);
     const filhosSection = sectionPalette.childNodes;
-    const cores = ['black', 'blue', 'purple', 'yellow'];
-    filhosSection[i].classList.remove(cores[i]);
+    const coresPadroes = ['black', 'blue', 'purple', 'yellow'];
+    filhosSection[i].classList.remove(coresPadroes[i]);
     filhosSection[i].style.backgroundColor = hex;
   }
   localStorage.setItem('colorPalette', JSON.stringify(array));
@@ -78,13 +77,29 @@ function putClassSelected() {
   filhosSection[0].classList.add('selected');
 }
 
+const filhosSection = sectionPalette.childNodes;
+function catchColor() {
+  for (let i = 0; i < 4; i += 1) {
+    filhosSection[i].addEventListener('click', () => {
+      if ('click' && filhosSection[i].classList === 'quadrado color selected') {
+        const cor = filhosSection[i].style.backgroundColor;
+        console.log(cor);
+      } else if ('click' && filhosSection[i].classList !== 'quadrado color selected') {
+        for (let o = 0; o < 4; o += 1) {
+          filhosSection[o].classList.remove('selected');
+        }
+        filhosSection[i].classList.add('selected');
+      }
+    });
+  }
+}
 function init() {
-  square();
   createButton();
   trocarCor();
   manterCor();
   createSection();
   putClassSelected();
+  catchColor();
 }
 
 window.onload = init;
