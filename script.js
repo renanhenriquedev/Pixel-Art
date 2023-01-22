@@ -9,7 +9,6 @@ for (let i = 0; i < 4; i += 1) {
   const pegarSection = document.querySelector('section');
   let criarQuadrado = document.createElement('div');
   criarQuadrado.classList.add('quadrado', 'color');
-  criarQuadrado.id = [i];
   criarQuadrado.style.backgroundColor = cores[i];
   pegarSection.appendChild(criarQuadrado);
   criarQuadrado = undefined;
