@@ -82,14 +82,32 @@ function catchColor() {
     filhosSection[i].addEventListener('click', () => {
       if ('click' && filhosSection[i].classList === 'quadrado color selected') {
         const cor = filhosSection[i].style.backgroundColor;
-        console.log(cor);
+        localStorage.setItem('corzinha', cor);
       } else if ('click' && filhosSection[i].classList !== 'quadrado color selected') {
         for (let o = 0; o < 4; o += 1) {
           filhosSection[o].classList.remove('selected');
         }
+        const cor = filhosSection[i].style.backgroundColor;
         filhosSection[i].classList.add('selected');
+        localStorage.setItem('corzinha', cor);
       }
     });
+  }
+}
+
+localStorage.setItem('corzinha', 'rgb(0, 0, 0)');
+
+function pintar() {
+  const painel = document.querySelectorAll('#pixel-board');
+  for (let i = 0; i < 5; i += 1) {
+    const teste = painel[i].childNodes;
+    for (let o = 0; o < 5; o += 1) {
+      teste[o].addEventListener('click', () => {
+        if ('click') {
+          teste[o].style.backgroundColor = localStorage.getItem('corzinha');
+        }
+      });
+    }
   }
 }
 function init() {
@@ -99,6 +117,7 @@ function init() {
   createSection();
   putClassSelected();
   catchColor();
+  pintar();
 }
 
 window.onload = init;
