@@ -17,11 +17,12 @@ if (localStorage.length === 0) {
   localStorage.setItem('colorPalette', JSON.stringify(cores.slice(1, cores.length)));
 }
 
-function createButton() {
+function createButton(type, id, texto, classe) {
   const button = document.createElement('button');
-  button.type = 'button';
-  button.id = 'button-random-color';
-  button.innerText = 'Cores aleatórias';
+  button.type = type;
+  button.id = id;
+  button.innerText = texto;
+  button.classList.add(classe);
   body.appendChild(button);
 }
 
@@ -97,7 +98,7 @@ function catchColor() {
 
 localStorage.setItem('corzinha', 'rgb(0, 0, 0)');
 
-function pintar() {
+function paint() {
   const painel = document.querySelectorAll('#pixel-board');
   for (let i = 0; i < 5; i += 1) {
     const teste = painel[i].childNodes;
@@ -110,14 +111,31 @@ function pintar() {
     }
   }
 }
+
+function clean() {
+  createButton('button', 'clear-board', 'Limpar', 'button');
+  const button = document.querySelector('.button');
+  const painel = document.querySelectorAll('#pixel-board');
+  for (let i = 0; i < 5; i += 1) {
+    const divs = painel[i].childNodes;
+    for (let o = 0; o < 5; o += 1) {
+      button.addEventListener('click', () => {
+        if ('click') {
+          divs[o].style.backgroundColor = 'white';
+        }
+      });
+    }
+  }
+}
 function init() {
-  createButton();
+  createButton('button', 'button-random-color', 'Cores aleatórias');
   trocarCor();
   manterCor();
   createSection();
   putClassSelected();
   catchColor();
-  pintar();
+  paint();
+  clean();
 }
 
 window.onload = init;
