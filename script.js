@@ -101,11 +101,11 @@ localStorage.setItem('corzinha', 'rgb(0, 0, 0)');
 function paint() {
   const painel = document.querySelectorAll('#pixel-board');
   for (let i = 0; i < 5; i += 1) {
-    const teste = painel[i].childNodes;
+    const filhosPainel = painel[i].childNodes;
     for (let o = 0; o < 5; o += 1) {
-      teste[o].addEventListener('click', () => {
+      filhosPainel[o].addEventListener('click', () => {
         if ('click') {
-          teste[o].style.backgroundColor = localStorage.getItem('corzinha');
+          filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
         }
       });
     }
