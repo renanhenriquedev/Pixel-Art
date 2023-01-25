@@ -54,10 +54,13 @@ function manterCor() {
   }
 }
 
+let controle = 0;
 function pixelFrame(frame) {
   for (let i = 0; i < 5; i += 1) {
     let criarQuadrado = document.createElement('div');
     criarQuadrado.classList.add('quadro', 'pixel', 'white');
+    criarQuadrado.id = controle;
+    controle += 1;
     frame.appendChild(criarQuadrado);
     criarQuadrado = undefined;
   }
@@ -98,20 +101,6 @@ function catchColor() {
 
 localStorage.setItem('corzinha', 'rgb(0, 0, 0)');
 
-function paint() {
-  const painel = document.querySelectorAll('#pixel-board');
-  for (let i = 0; i < 5; i += 1) {
-    const filhosPainel = painel[i].childNodes;
-    for (let o = 0; o < 5; o += 1) {
-      filhosPainel[o].addEventListener('click', () => {
-        if ('click') {
-          filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
-        }
-      });
-    }
-  }
-}
-
 function clean() {
   createButton('button', 'clear-board', 'Limpar', 'button');
   const button = document.querySelector('.button');
@@ -127,6 +116,43 @@ function clean() {
     }
   }
 }
+
+function draw() {
+  if (localStorage.getItem('pixelBoard') !== null) {
+    const teste = JSON.parse(localStorage.getItem('pixelBoard'));
+    const tamanho = teste.length;
+    const teste2 = JSON.parse(localStorage.getItem('backgroundcolor'));
+    for (let i = 0; i < tamanho; i += 1) {
+      console.log(teste2);
+      console.log(teste);
+      const a = document.getElementById(teste[i]);
+      console.log(teste[i]);
+      a.style.backgroundColor = teste2[i];
+    }
+  }
+}
+
+function paint() {
+  const painel = document.querySelectorAll('#pixel-board');
+  const array = [];
+  const arraySegundo = [];
+  for (let i = 0; i < 5; i += 1) {
+    const filhosPainel = painel[i].childNodes;
+    for (let o = 0; o < 5; o += 1) {
+      filhosPainel[o].addEventListener('click', () => {
+        if ('click') {
+          filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
+          const corPosition = filhosPainel[o].style.backgroundColor;
+          const { id } = filhosPainel[o];
+          array.push(id);
+          arraySegundo.push(corPosition);
+          localStorage.setItem('pixelBoard', JSON.stringify(array));
+          localStorage.setItem('backgroundcolor', JSON.stringify(arraySegundo));
+        }
+      });
+    }
+  }
+}
 function init() {
   createButton('button', 'button-random-color', 'Cores aleatórias');
   trocarCor();
@@ -136,6 +162,8 @@ function init() {
   catchColor();
   paint();
   clean();
+  // catchPosition();
+  draw();
 }
 
 window.onload = init;
