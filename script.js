@@ -119,15 +119,12 @@ function clean() {
 
 function draw() {
   if (localStorage.getItem('pixelBoard') !== null) {
-    const teste = JSON.parse(localStorage.getItem('pixelBoard'));
-    const tamanho = teste.length;
-    const teste2 = JSON.parse(localStorage.getItem('backgroundcolor'));
+    const desenho = JSON.parse(localStorage.getItem('pixelBoard'));
+    const tamanho = desenho.length;
+    const corDesenho = JSON.parse(localStorage.getItem('backgroundcolor'));
     for (let i = 0; i < tamanho; i += 1) {
-      console.log(teste2);
-      console.log(teste);
-      const a = document.getElementById(teste[i]);
-      console.log(teste[i]);
-      a.style.backgroundColor = teste2[i];
+      const refresh = document.getElementById(desenho[i]);
+      refresh.style.backgroundColor = corDesenho[i];
     }
   }
 }
