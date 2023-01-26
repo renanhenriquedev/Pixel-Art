@@ -36,3 +36,11 @@ div{
     top: -251px;
     left: 150px;
 }
+#generate-board{
+    margin-left: 355px;
+}
+#board-size{
+    position: relative;
+    bottom: 251px;
+    left: 180px;
+}
