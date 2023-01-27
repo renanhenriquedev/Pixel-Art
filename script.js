@@ -170,7 +170,6 @@ function apagarBoard() {
   console.log('pegandoooooooooooooooo');
   const teste = document.querySelectorAll('#pixel-board');
   for (let i = 0; i < teste.length; i += 1) {
-    console.log(teste);
     body.removeChild(teste[i]);
   }
 }
@@ -178,31 +177,82 @@ function apagarBoard() {
 function alterarBoard() {
   const input = document.querySelector('#board-size');
   const valor = input.value;
-  function pixelFrame(frame) {
-    for (let i = 0; i < valor; i += 1) {
-      let criarQuadrado = document.createElement('div');
-      criarQuadrado.classList.add('quadro', 'pixel', 'white');
-      criarQuadrado.id = controle;
-      controle += 1;
-      frame.appendChild(criarQuadrado);
-      criarQuadrado = undefined;
+  if (valor >= 5 && valor <= 50) {
+    function pixelFrame(frame) {
+      for (let i = 0; i < valor; i += 1) {
+        let criarQuadrado = document.createElement('div');
+        criarQuadrado.classList.add('quadro', 'pixel', 'white');
+        criarQuadrado.id = controle;
+        controle += 1;
+        frame.appendChild(criarQuadrado);
+        criarQuadrado = undefined;
+      }
     }
-  }
 
-  for (let i = 0; i < valor; i += 1) {
-    const frame = document.createElement('section');
-    frame.id = 'pixel-board';
-    body.appendChild(frame);
-    pixelFrame(frame);
+    for (let i = 0; i < valor; i += 1) {
+      const frame = document.createElement('section');
+      frame.id = 'pixel-board';
+      body.appendChild(frame);
+      pixelFrame(frame);
+    }
   }
 }
 
+function minBoard() {
+  const input = document.querySelector('#board-size');
+  const valor = input.value;
+  if (valor < 5) {
+    function pixelFrame(frame) {
+      for (let i = 0; i < 5; i += 1) {
+        let criarQuadrado = document.createElement('div');
+        criarQuadrado.classList.add('quadro', 'pixel', 'white');
+        criarQuadrado.id = controle;
+        controle += 1;
+        frame.appendChild(criarQuadrado);
+        criarQuadrado = undefined;
+      }
+    }
+
+    for (let i = 0; i < 5; i += 1) {
+      const frame = document.createElement('section');
+      frame.id = 'pixel-board';
+      body.appendChild(frame);
+      pixelFrame(frame);
+    }
+  }
+}
+
+function maxBoard() {
+  const input = document.querySelector('#board-size');
+  const valor = input.value;
+  if (valor > 50) {
+    function pixelFrame(frame) {
+      for (let i = 0; i < 50  ; i += 1) {
+        let criarQuadrado = document.createElement('div');
+        criarQuadrado.classList.add('quadro', 'pixel', 'white');
+        criarQuadrado.id = controle;
+        controle += 1;
+        frame.appendChild(criarQuadrado);
+        criarQuadrado = undefined;
+      }
+    }
+
+    for (let i = 0; i < 50; i += 1) {
+      const frame = document.createElement('section');
+      frame.id = 'pixel-board';
+      body.appendChild(frame);
+      pixelFrame(frame);
+    }
+  }
+}
 function buttonVQV() {
   const button = document.querySelector('#generate-board');
   button.addEventListener('click', () => {
     problemVQV();
     apagarBoard();
     alterarBoard();
+    minBoard();
+    maxBoard();
   });
 }
 
