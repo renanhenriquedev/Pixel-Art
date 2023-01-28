@@ -4,7 +4,7 @@ sectionPalette.id = 'color-palette';
 
 body.appendChild(sectionPalette);
 
-const cores = ['#000000', '#0000ff ', '#a000c8', '#ffff00'];
+const cores = ['#000000', '#0000ff ', '#a000c8', '#e7a23c'];
 for (let i = 0; i < 4; i += 1) {
   const pegarSection = document.querySelector('section');
   let criarQuadrado = document.createElement('div');
@@ -125,8 +125,7 @@ function catchColor() {
 localStorage.setItem('corzinha', 'rgb(0, 0, 0)');
 
 function clean() {
-  createButton('button', 'clear-board', 'Limpar', 'button');
-  const button = document.querySelector('.button');
+  const button = document.querySelector('#clear-board');
   const painel = document.querySelectorAll('#pixel-board');
   for (let i = 0; i < painel.length; i += 1) {
     const divs = painel[i].childNodes;
@@ -170,11 +169,11 @@ function paint() {
   }
 }
 
-function createInput() {
+function createInput(id, type, min) {
   const input = document.createElement('input');
-  input.id = 'board-size';
-  input.type = 'number';
-  input.min = '1';
+  input.id = id;
+  input.type = type;
+  input.min = min;
   body.appendChild(input);
 }
 
@@ -280,6 +279,8 @@ function buttonVQV() {
 function init() {
   createButton('button', 'button-random-color', 'Cores aleatórias');
   createButton('button', 'generate-board', 'VQV');
+  createButton('button', 'clear-board', 'Limpar', 'button');
+  createInput('board-size', 'number', '1');
   trocarCor();
   manterCor();
   createSection();

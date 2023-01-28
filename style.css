@@ -21,7 +21,9 @@ div{
     display: inline-block;
     width: 100px;
     height: 100px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid white;
+    margin: 5px;
+    justify-content: center;
 }
 
 .quadro{
@@ -32,7 +34,6 @@ div{
 }
 
 .button{
-    position: relative;
     top: -251px;
     left: 150px;
 }
@@ -43,4 +44,17 @@ div{
     position: relative;
     bottom: 251px;
     left: 180px;
+}
+h1{
+    text-align: center;
+    color: white;
+}
+body{
+    background-color: #0a8f94;
+}
+#color-palette{
+    justify-content: center;
+    align-items: center;  
+    display: flex; 
+    flex-direction: row;
 }
