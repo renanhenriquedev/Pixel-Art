@@ -56,22 +56,45 @@ function manterCor() {
 
 let controle = 0;
 function pixelFrame(frame) {
-  for (let i = 0; i < 5; i += 1) {
-    let criarQuadrado = document.createElement('div');
-    criarQuadrado.classList.add('quadro', 'pixel', 'white');
-    criarQuadrado.id = controle;
-    controle += 1;
-    frame.appendChild(criarQuadrado);
-    criarQuadrado = undefined;
+  if (localStorage.getItem('boardSize') === null) {
+    for (let i = 0; i < 5; i += 1) {
+      let criarQuadrado = document.createElement('div');
+      criarQuadrado.classList.add('quadro', 'pixel', 'white');
+      criarQuadrado.id = controle;
+      controle += 1;
+      frame.appendChild(criarQuadrado);
+      criarQuadrado = undefined;
+    }
+  }
+  if (localStorage.getItem('boardSize') !== null) {
+    const tamanhoSection = localStorage.getItem('boardSize');
+    for (let i = 0; i < tamanhoSection; i += 1) {
+      let criarQuadrado = document.createElement('div');
+      criarQuadrado.classList.add('quadro', 'pixel', 'white');
+      criarQuadrado.id = controle;
+      controle += 1;
+      frame.appendChild(criarQuadrado);
+      criarQuadrado = undefined;
+    }
   }
 }
-
 function createSection() {
-  for (let i = 0; i < 5; i += 1) {
-    const frame = document.createElement('section');
-    frame.id = 'pixel-board';
-    body.appendChild(frame);
-    pixelFrame(frame);
+  if (localStorage.getItem('boardSize') === null) {
+    for (let i = 0; i < 5; i += 1) {
+      const frame = document.createElement('section');
+      frame.id = 'pixel-board';
+      body.appendChild(frame);
+      pixelFrame(frame);
+    }
+  }
+  if (localStorage.getItem('boardSize') !== null) {
+    const tamanhoSection = localStorage.getItem('boardSize');
+    for (let i = 0; i < tamanhoSection; i += 1) {
+      const frame = document.createElement('section');
+      frame.id = 'pixel-board';
+      body.appendChild(frame);
+      pixelFrame(frame);
+    }
   }
 }
 
@@ -105,9 +128,9 @@ function clean() {
   createButton('button', 'clear-board', 'Limpar', 'button');
   const button = document.querySelector('.button');
   const painel = document.querySelectorAll('#pixel-board');
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < painel.length; i += 1) {
     const divs = painel[i].childNodes;
-    for (let o = 0; o < 5; o += 1) {
+    for (let o = 0; o < painel.length; o += 1) {
       button.addEventListener('click', () => {
         divs[o].style.backgroundColor = 'white';
       });
@@ -131,9 +154,9 @@ function paint() {
   const painel = document.querySelectorAll('#pixel-board');
   const array = [];
   const arraySegundo = [];
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < painel.length; i += 1) {
     const filhosPainel = painel[i].childNodes;
-    for (let o = 0; o < 5; o += 1) {
+    for (let o = 0; o < filhosPainel.length; o += 1) {
       filhosPainel[o].addEventListener('click', () => {
         filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
         const corPosition = filhosPainel[o].style.backgroundColor;
@@ -158,16 +181,12 @@ function createInput() {
 function problemVQV() {
   const input = document.querySelector('#board-size');
   const valor = input.value;
-  if (valor > 0) {
-    console.log('miau');
-  } if (valor === '') {
-    console.log(valor);
+  if (valor === '') {
     alert('Board inválido!');
   }
 }
 
 function apagarBoard() {
-  console.log('pegandoooooooooooooooo');
   const teste = document.querySelectorAll('#pixel-board');
   for (let i = 0; i < teste.length; i += 1) {
     body.removeChild(teste[i]);
@@ -227,7 +246,7 @@ function maxBoard() {
   const valor = input.value;
   if (valor > 50) {
     function pixelFrame(frame) {
-      for (let i = 0; i < 50  ; i += 1) {
+      for (let i = 0; i < 50; i += 1) {
         let criarQuadrado = document.createElement('div');
         criarQuadrado.classList.add('quadro', 'pixel', 'white');
         criarQuadrado.id = controle;
@@ -244,6 +263,7 @@ function maxBoard() {
       pixelFrame(frame);
     }
   }
+  localStorage.setItem('boardSize', JSON.stringify(document.querySelectorAll('#pixel-board').length));
 }
 function buttonVQV() {
   const button = document.querySelector('#generate-board');
@@ -253,6 +273,7 @@ function buttonVQV() {
     alterarBoard();
     minBoard();
     maxBoard();
+    paint();
   });
 }
 
