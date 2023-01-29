@@ -1,21 +1,36 @@
+body{
+    background-color: #0a8f94;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
 .black{
     background-color: black;
 }
+
 .blue{
     background-color: blue;
 }
+
 .purple{
     background-color: purple;
 }
+
 .yellow{
     background-color: yellow;
 }
+
 .white{
     background-color: white;
 }
+
 div{
     display: inline-block;
 }
+
 .quadrado{
     position: static;
     display: inline-block;
@@ -32,29 +47,46 @@ div{
     height: 40px;
     border: 1px solid rgb(0, 0, 0);
 }
-
-.button{
-    top: -251px;
-    left: 150px;
-}
-#generate-board{
-    margin-left: 355px;
-}
-#board-size{
-    position: relative;
-    bottom: 251px;
-    left: 180px;
-}
 h1{
     text-align: center;
-    color: white;
+    color: #FFFFFF;
+    text-shadow: 3px 3px 2px rgba(128, 0, 0, 1),4px 4px 19px rgba(100, 21, 72, 1);
+    margin: 0px;
+    margin-bottom: 15px;
 }
-body{
-    background-color: #0a8f94;
-}
+
 #color-palette{
     justify-content: center;
     align-items: center;  
     display: flex; 
     flex-direction: row;
+}
+
+.quadrado{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#container{
+    justify-content: center;
+    align-items: center;  
+    display: flex; 
+    flex-direction: row;
+    margin-bottom: 55px;
+    margin-top: 40px;
+}
+
+#pixel-board{
+    justify-content: center;
+    align-items: center;  
+    display: flex; 
+    flex-direction: row;
+}
+
+.space {
+    margin-right: 15px;
+}
+
+#generate-board{
+    margin-right: 0px;
+    margin-left: 15px;
 }

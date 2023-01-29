@@ -4,7 +4,7 @@ sectionPalette.id = 'color-palette';
 
 body.appendChild(sectionPalette);
 
-const cores = ['#000000', '#0000ff ', '#a000c8', '#e7a23c'];
+const cores = ['#c842e7', '#000a17 ', '#0062dd', '#e7a23c'];
 for (let i = 0; i < 4; i += 1) {
   const pegarSection = document.querySelector('section');
   let criarQuadrado = document.createElement('div');
@@ -17,23 +17,25 @@ if (localStorage.length === 0) {
   localStorage.setItem('colorPalette', JSON.stringify(cores.slice(1, cores.length)));
 }
 
+const container = document.createElement('section');
+container.id = 'container'
+body.appendChild(container);
+const sectionButton = document.querySelector('#container')
 function createButton(type, id, texto, classe) {
   const button = document.createElement('button');
   button.type = type;
   button.id = id;
   button.innerText = texto;
-  button.classList.add(classe);
-  body.appendChild(button);
+  button.classList.add(classe, 'space');
+  sectionButton.appendChild(button);
 }
 
 function corAleatoria() {
   const array = [];
-  for (let i = 1; i < 4; i += 1) {
+  for (let i = 0; i < 4; i += 1) {
     const hex = `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`;
     array.push(hex);
     const filhosSection = sectionPalette.childNodes;
-    const coresPadroes = ['black', 'blue', 'purple', 'yellow'];
-    filhosSection[i].classList.remove(coresPadroes[i]);
     filhosSection[i].style.backgroundColor = hex;
   }
   localStorage.setItem('colorPalette', JSON.stringify(array));
@@ -169,12 +171,13 @@ function paint() {
   }
 }
 
-function createInput(id, type, min) {
+function createInput() {
   const input = document.createElement('input');
-  input.id = id;
-  input.type = type;
-  input.min = min;
-  body.appendChild(input);
+  input.id = 'board-size';
+  input.type = 'number';
+  input.min = '1';
+  input.class = 'space';
+  sectionButton.appendChild(input);
 }
 
 function problemVQV() {
@@ -277,10 +280,8 @@ function buttonVQV() {
 }
 
 function init() {
-  createButton('button', 'button-random-color', 'Cores aleatórias');
-  createButton('button', 'generate-board', 'VQV');
+  createButton('button', 'button-random-color', 'Gerar Cores');
   createButton('button', 'clear-board', 'Limpar', 'button');
-  createInput('board-size', 'number', '1');
   trocarCor();
   manterCor();
   createSection();
@@ -290,6 +291,7 @@ function init() {
   clean();
   draw();
   createInput();
+  createButton('button', 'generate-board', 'Tamanho'), 'a';
   buttonVQV();
 }
 
