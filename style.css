@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #0a8f94;
     display: flex;
     flex-direction: column;
@@ -7,31 +7,31 @@ body{
     height: 100vh;
 }
 
-.black{
+.black {
     background-color: black;
 }
 
-.blue{
+.blue {
     background-color: blue;
 }
 
-.purple{
+.purple {
     background-color: purple;
 }
 
-.yellow{
+.yellow {
     background-color: yellow;
 }
 
-.white{
+.white {
     background-color: white;
 }
 
-div{
+div {
     display: inline-block;
 }
 
-.quadrado{
+.quadrado {
     position: static;
     display: inline-block;
     width: 100px;
@@ -46,7 +46,7 @@ div{
     padding: 0px;
 }
 
-.quadro{
+.quadro {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -56,31 +56,31 @@ div{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-h1{
+h1 {
     text-align: center;
     color: #FFFFFF;
-    text-shadow: 3px 3px 2px rgba(128, 0, 0, 1),4px 4px 19px rgba(100, 21, 72, 1);
+    text-shadow: 3px 3px 2px rgba(128, 0, 0, 1), 4px 4px 19px rgba(100, 21, 72, 1);
     margin: 0px;
     margin-bottom: 15px;
 }
 
-.quadrado{
+.quadrado {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-#container{
+#container {
     justify-content: center;
-    align-items: center;  
-    display: flex; 
+    align-items: center;
+    display: flex;
     flex-direction: row;
     margin-bottom: 55px;
     margin-top: 40px;
 }
 
-#paint{
+#paint {
     justify-content: center;
-    align-items: center;  
-    display: flex; 
+    align-items: center;
+    display: flex;
     flex-direction: row;
 }
 
@@ -105,30 +105,28 @@ h1{
 }
 
 #clear {
-    padding: 0.6em;
+    padding: 0.5em;
     margin-left: 5px;
     color: rgb(255, 255, 255);
     background: #003450;
     cursor: pointer;
     z-index: 0;
     border-radius: 10px;
-    border-color: buttonborder;
+    border-color: white;
 }
-  
+
 #random-color:before {
     content: "";
-    background: linear-gradient(
-      45deg,
-      #ff0000,
-      #ff7300,
-      #fffb00,
-      #48ff00,
-      #00ffd5,
-      #002bff,
-      #7a00ff,
-      #ff00c8,
-      #ff0000
-    );
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -141,19 +139,21 @@ h1{
     animation: glowing-random-color 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
 }
-  
-  @keyframes glowing-random-color {
+
+@keyframes glowing-random-color {
     0% {
-      background-position: 0 0;
+        background-position: 0 0;
     }
+
     50% {
-      background-position: 400% 0;
+        background-position: 400% 0;
     }
+
     100% {
-      background-position: 0 0;
+        background-position: 0 0;
     }
 }
-  
+
 #random-color:after {
     z-index: -1;
     content: "";
@@ -165,3 +165,25 @@ h1{
     top: 0;
     border-radius: 10px;
 }
+
+#button-size {
+    padding: 0.5em;
+    margin-left: 5px;
+    color: rgb(255, 255, 255);
+    background: #003450;
+    cursor: pointer;
+    z-index: 0;
+    border-radius: 10px;
+    border-color: white;
+}
+
+#change-size{
+    padding: 0.5em;
+    color: rgb(255, 255, 255);
+    background: #003450;
+    cursor: pointer;
+    z-index: 0;
+    border-radius: 10px;
+    border-color: white;
+    box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+} 
