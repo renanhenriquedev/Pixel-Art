@@ -1,8 +1,8 @@
-const sectionPalette = document.createElement('section');
+const chart = document.createElement('section');
 const body = document.querySelector('body');
-sectionPalette.id = 'color-palette';
+chart.id = 'color-chart';
 
-body.appendChild(sectionPalette);
+body.appendChild(chart);
 
 const cores = ['#c842e7', '#000a17 ', '#0062dd', '#e7a23c'];
 for (let i = 0; i < 4; i += 1) {
@@ -14,7 +14,7 @@ for (let i = 0; i < 4; i += 1) {
   criarQuadrado = undefined;
 }
 if (localStorage.length === 0) {
-  localStorage.setItem('colorPalette', JSON.stringify(cores.slice(1, cores.length)));
+  localStorage.setItem('inital-colors', JSON.stringify(cores.slice(1, cores.length)));
 }
 
 const container = document.createElement('section');
@@ -35,21 +35,21 @@ function corAleatoria() {
   for (let i = 0; i < 4; i += 1) {
     const hex = `#${(Math.random() * 0xFFFFFF << 0).toString(16)}`;
     array.push(hex);
-    const filhosSection = sectionPalette.childNodes;
+    const filhosSection = chart.childNodes;
     filhosSection[i].style.backgroundColor = hex;
   }
-  localStorage.setItem('colorPalette', JSON.stringify(array));
+  localStorage.setItem('inital-colors', JSON.stringify(array));
 }
 
 function trocarCor() {
-  const catchButton = document.getElementById('button-random-color');
+  const catchButton = document.getElementById('random-color');
   catchButton.addEventListener('click', corAleatoria);
 }
 
 function manterCor() {
   if (localStorage.length > 0) {
-    const arrayCores = JSON.parse(localStorage.getItem('colorPalette'));
-    const filhosSection = sectionPalette.childNodes;
+    const arrayCores = JSON.parse(localStorage.getItem('inital-colors'));
+    const filhosSection = chart.childNodes;
     for (let i = 1; i < 4; i += 1) {
       filhosSection[i].style.backgroundColor = arrayCores[i - 1];
     }
@@ -58,7 +58,7 @@ function manterCor() {
 
 let controle = 0;
 function pixelFrame(frame) {
-  if (localStorage.getItem('boardSize') === null) {
+  if (localStorage.getItem('picture') === null) {
     for (let i = 0; i < 5; i += 1) {
       let criarQuadrado = document.createElement('div');
       criarQuadrado.classList.add('quadro', 'pixel', 'white');
@@ -68,8 +68,8 @@ function pixelFrame(frame) {
       criarQuadrado = undefined;
     }
   }
-  if (localStorage.getItem('boardSize') !== null) {
-    const tamanhoSection = localStorage.getItem('boardSize');
+  if (localStorage.getItem('picture') !== null) {
+    const tamanhoSection = localStorage.getItem('picture');
     for (let i = 0; i < tamanhoSection; i += 1) {
       let criarQuadrado = document.createElement('div');
       criarQuadrado.classList.add('quadro', 'pixel', 'white');
@@ -81,19 +81,19 @@ function pixelFrame(frame) {
   }
 }
 function createSection() {
-  if (localStorage.getItem('boardSize') === null) {
+  if (localStorage.getItem('picture') === null) {
     for (let i = 0; i < 5; i += 1) {
       const frame = document.createElement('section');
-      frame.id = 'pixel-board';
+      frame.id = 'paint';
       body.appendChild(frame);
       pixelFrame(frame);
     }
   }
-  if (localStorage.getItem('boardSize') !== null) {
-    const tamanhoSection = localStorage.getItem('boardSize');
+  if (localStorage.getItem('picture') !== null) {
+    const tamanhoSection = localStorage.getItem('picture');
     for (let i = 0; i < tamanhoSection; i += 1) {
       const frame = document.createElement('section');
-      frame.id = 'pixel-board';
+      frame.id = 'paint';
       body.appendChild(frame);
       pixelFrame(frame);
     }
@@ -101,11 +101,11 @@ function createSection() {
 }
 
 function putClassSelected() {
-  const filhosSection = sectionPalette.childNodes;
+  const filhosSection = chart.childNodes;
   filhosSection[0].classList.add('selected');
 }
 
-const filhosSection = sectionPalette.childNodes;
+const filhosSection = chart.childNodes;
 function catchColor() {
   for (let i = 0; i < 4; i += 1) {
     filhosSection[i].addEventListener('click', () => {
@@ -128,7 +128,7 @@ localStorage.setItem('corzinha', 'rgb(0, 0, 0)');
 
 function clean() {
   const button = document.querySelector('#clear-board');
-  const painel = document.querySelectorAll('#pixel-board');
+  const painel = document.querySelectorAll('#paint');
   for (let i = 0; i < painel.length; i += 1) {
     const divs = painel[i].childNodes;
     for (let o = 0; o < painel.length; o += 1) {
@@ -152,7 +152,7 @@ function draw() {
 }
 
 function paint() {
-  const painel = document.querySelectorAll('#pixel-board');
+  const painel = document.querySelectorAll('#paint');
   const array = [];
   const arraySegundo = [];
   for (let i = 0; i < painel.length; i += 1) {
@@ -189,7 +189,7 @@ function problemVQV() {
 }
 
 function apagarBoard() {
-  const teste = document.querySelectorAll('#pixel-board');
+  const teste = document.querySelectorAll('#paint');
   for (let i = 0; i < teste.length; i += 1) {
     body.removeChild(teste[i]);
   }
@@ -212,7 +212,7 @@ function alterarBoard() {
 
     for (let i = 0; i < valor; i += 1) {
       const frame = document.createElement('section');
-      frame.id = 'pixel-board';
+      frame.id = 'paint';
       body.appendChild(frame);
       pixelFrame(frame);
     }
@@ -236,7 +236,7 @@ function minBoard() {
 
     for (let i = 0; i < 5; i += 1) {
       const frame = document.createElement('section');
-      frame.id = 'pixel-board';
+      frame.id = 'paint';
       body.appendChild(frame);
       pixelFrame(frame);
     }
@@ -260,12 +260,12 @@ function maxBoard() {
 
     for (let i = 0; i < 50; i += 1) {
       const frame = document.createElement('section');
-      frame.id = 'pixel-board';
+      frame.id = 'paint';
       body.appendChild(frame);
       pixelFrame(frame);
     }
   }
-  localStorage.setItem('boardSize', JSON.stringify(document.querySelectorAll('#pixel-board').length));
+  localStorage.setItem('picture', JSON.stringify(document.querySelectorAll('#paint').length));
 }
 function buttonVQV() {
   const button = document.querySelector('#generate-board');
@@ -280,7 +280,7 @@ function buttonVQV() {
 }
 
 function init() {
-  createButton('button', 'button-random-color', 'Gerar Cores');
+  createButton('button', 'random-color', 'Gerar Cores');
   createButton('button', 'clear-board', 'Limpar', 'button');
   trocarCor();
   manterCor();
