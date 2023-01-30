@@ -162,18 +162,39 @@ function paint() {
   const painel = document.querySelectorAll('#paint');
   const array = [];
   const arraySegundo = [];
-  for (let i = 0; i < painel.length; i += 1) {
-    const filhosPainel = painel[i].childNodes;
-    for (let o = 0; o < filhosPainel.length; o += 1) {
-      filhosPainel[o].addEventListener('click', () => {
-        filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
-        const corPosition = filhosPainel[o].style.backgroundColor;
-        const { id } = filhosPainel[o];
-        array.push(id);
-        arraySegundo.push(corPosition);
-        localStorage.setItem('draw', JSON.stringify(array));
-        localStorage.setItem('backgroundcolor', JSON.stringify(arraySegundo));
-      });
+  if(localStorage.getItem('draw') === null){
+    for (let i = 0; i < painel.length; i += 1) {
+      const filhosPainel = painel[i].childNodes;
+      for (let o = 0; o < filhosPainel.length; o += 1) {
+        filhosPainel[o].addEventListener('click', () => {
+          filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
+          const corPosition = filhosPainel[o].style.backgroundColor;
+          const id = filhosPainel[o].id;
+          array.push(id);
+          arraySegundo.push(corPosition);
+          localStorage.setItem('draw', JSON.stringify(array));
+          localStorage.setItem('backgroundcolor', JSON.stringify(arraySegundo));
+        });
+      }
+    }
+  }
+
+  if(localStorage.getItem('draw') !== null){
+    let arrayDraw = JSON.parse(localStorage.getItem('draw'));
+    let arrayBackground = JSON.parse(localStorage.getItem('backgroundcolor'));
+    for (let i = 0; i < painel.length; i += 1) {
+      const filhosPainel = painel[i].childNodes;
+      for (let o = 0; o < filhosPainel.length; o += 1) {
+        filhosPainel[o].addEventListener('click', () => {
+          filhosPainel[o].style.backgroundColor = localStorage.getItem('corzinha');
+          const corPosition = filhosPainel[o].style.backgroundColor;
+          const id = filhosPainel[o].id;
+          arrayDraw.push(id)
+          arrayBackground.push(corPosition)
+          localStorage.setItem('draw', JSON.stringify(arrayDraw));
+          localStorage.setItem('backgroundcolor', JSON.stringify(arrayBackground));
+        });
+      }
     }
   }
 }
@@ -283,6 +304,7 @@ function buttonVQV() {
     alterarBoard();
     minBoard();
     maxBoard();
+    clean();
     paint();
   });
 }
