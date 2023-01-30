@@ -6,6 +6,8 @@
 
 Projeto construído a partir buscas no youtube para portfólio
 
+[Referência](https://www.youtube.com/watch?v=jjtUpWCfOCI)
+
 [Clique aqui para acessar](https://pixelart-project.surge.sh/)
 
 # Tecnologias
