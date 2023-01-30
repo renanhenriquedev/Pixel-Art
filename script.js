@@ -199,7 +199,8 @@ function apagarBoard() {
 function alterarBoard() {
   const input = document.querySelector('#change-size');
   const valor = input.value;
-  if (valor >= 4 && valor <= 60) {
+  let controle = 0
+  if (valor > 5 && valor <= 60) {
     function pixelFrame(frame) {
       for (let i = 0; i < valor; i += 1) {
         let criarQuadrado = document.createElement('div');
@@ -223,9 +224,9 @@ function alterarBoard() {
 function minBoard() {
   const input = document.querySelector('#change-size');
   const valor = input.value;
-  if (valor <= 3) {
+  if (valor <= 5) {
     function pixelFrame(frame) {
-      for (let i = 0; i < 3; i += 1) {
+      for (let i = 0; i < 5; i += 1) {
         let criarQuadrado = document.createElement('div');
         criarQuadrado.classList.add('quadro', 'pixel', 'white');
         criarQuadrado.id = controle;
@@ -235,7 +236,7 @@ function minBoard() {
       }
     }
 
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const frame = document.createElement('section');
       frame.id = 'paint';
       body.appendChild(frame);
