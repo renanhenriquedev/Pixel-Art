@@ -128,16 +128,22 @@ function catchColor() {
 localStorage.setItem('corzinha', 'rgb(200, 66, 231)');
 
 function clean() {
-  const button = document.querySelector('#clear');
   const painel = document.querySelectorAll('#paint');
   for (let i = 0; i < painel.length; i += 1) {
     const divs = painel[i].childNodes;
     for (let o = 0; o < painel.length; o += 1) {
-      button.addEventListener('click', () => {
         divs[o].style.backgroundColor = 'white';
-      });
     }
   }
+  localStorage.removeItem('draw');
+  localStorage.removeItem('backgroundcolor');
+}
+
+function executClean() {
+  const buttonClean = document.querySelector('#clear');
+  buttonClean.addEventListener('click', () => {
+    clean()
+  })
 }
 
 function draw() {
@@ -290,7 +296,7 @@ function init() {
   putClassChoosen();
   catchColor();
   paint();
-  clean();
+  executClean();
   draw();
   createInput();
   createButton('button', 'button-size', 'Tamanho')
