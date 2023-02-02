@@ -309,6 +309,16 @@ function buttonVQV() {
   });
 }
 
+const footer = document.createElement('footer')
+body.appendChild(footer);
+
+const textFooter = document.createElement('p');
+textFooter.innerText = '2022 Ⓒ Desenvolvido por Renan Henrique';
+
+const pegarFooter = document.querySelector('footer');
+
+pegarFooter.appendChild(textFooter);
+
 function init() {
   createButton('button', 'random-color', 'Gerar Cores');
   createButton('button', 'clear', 'Limpar', 'button');
